@@ -1,5 +1,32 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  array.sort((a, b) => a - b);
+
+  // Initialize two pointers, one at the beginning and one at the end of the array
+  let left = 0;
+  let right = array.length - 1;
+
+  // Iterate until the pointers meet or cross each other
+  while (left < right) {
+    // Calculate the sum of the elements at the current positions of the pointers
+    const sum = array[left] + array[right];
+
+    // If the sum is equal to the target, return true
+    if (sum === target) {
+      return true;
+    }
+    // If the sum is greater than the target, move the right pointer to the left
+    else if (sum > target) {
+      right--;
+    }
+    // If the sum is less than the target, move the left pointer to the right
+    else {
+      left++;
+    }
+  }
+
+  // If no pair with the target sum is found, return false
+  return false;
 }
 
 /* 
